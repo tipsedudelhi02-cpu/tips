@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Target Institute of Professional Study (TIPS)</title>
+    <style>
+        /* General Styles */
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 0; color: #333; background-color: #f4f4f4; }
+        a { text-decoration: none; color: inherit; }
+        
+        /* Top Bar */
+        .top-bar { background-color: #002147; color: white; padding: 10px 20px; display: flex; justify-content: space-between; align-items: center; font-size: 14px; }
+        .top-bar-left { display: flex; gap: 15px; }
+        
+        /* LMS Button Styles */
+        .lms-btn { 
+            background-color: #d32f2f; 
+            color: white; 
+            padding: 5px 15px; 
+            border-radius: 4px; 
+            font-weight: bold; 
+            font-size: 12px;
+            transition: background 0.3s;
+        }
+        .lms-btn:hover { background-color: #b71c1c; }
+
+        /* Header & Nav */
+        header { background: white; box-shadow: 0 2px 5px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 1000; }
+        .nav-container { display: flex; justify-content: space-between; align-items: center; padding: 15px 5%; }
+        .logo { font-size: 24px; font-weight: bold; color: #d32f2f; display: flex; align-items: center; }
+        .logo span { color: #002147; margin-left: 5px; }
+        
+        .nav-links a { margin: 0 15px; font-weight: 600; color: #333; transition: color 0.3s; }
+        .nav-links a:hover { color: #d32f2f; }
+        
+        /* Specific style for LMS link in Nav */
+        .nav-lms { color: #d32f2f !important; font-weight: 700; }
+
+        .cta-btn { background-color: #d32f2f; color: white !important; padding: 10px 20px; border-radius: 4px; }
+        .cta-btn:hover { background-color: #b71c1c; }
+
+        /* Hero Section */
+        .hero { 
+            background: linear-gradient(rgba(0,33,71,0.7), rgba(0,33,71,0.7)), url('https://images.unsplash.com/photo-1576091160550-21d0c30f6b9d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+            background-size: cover; 
+            background-position: center;
+            height: 500px; 
+            display: flex; 
+            flex-direction: column;
+            justify-content: center; 
+            align-items: center; 
+            text-align: center; 
+            color: white;
+        }
+        .hero h1 { font-size: 3em; margin-bottom: 10px; }
+        .hero p { font-size: 1.2em; margin-bottom: 30px; max-width: 700px; }
+        .hero-btns a { margin: 10px; padding: 12px 25px; border: 2px solid white; border-radius: 5px; font-weight: bold; }
+        .hero-btns .fill { background: #d32f2f; border-color: #d32f2f; }
+
+        /* Announcement Bar */
+        .ticker { background: #fff3cd; color: #856404; padding: 10px; text-align: center; font-weight: bold; border-bottom: 1px solid #ffeeba; }
+
+        /* Sections */
+        .section-padding { padding: 60px 5%; }
+        .section-title { text-align: center; margin-bottom: 50px; }
+        .section-title h2 { color: #002147; font-size: 2.5em; margin-bottom: 10px; }
+        .section-title .line { width: 80px; height: 4px; background: #d32f2f; margin: 0 auto; }
+
+        /* Course Cards */
+        .courses-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .course-card { background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.1); transition: transform 0.3s; }
+        .course-card:hover { transform: translateY(-5px); }
+        .course-img { height: 200px; background: #ddd; background-size: cover; background-position: center; }
+        .course-content { padding: 20px; }
+        .course-content h3 { color: #002147; margin-top: 0; }
+        .course-content p { color: #666; font-size: 0.9em; line-height: 1.6; }
+        .read-more { color: #d32f2f; font-weight: bold; margin-top: 10px; display: block; }
+
+        /* Why Choose Us */
+        .features-grid { display: flex; flex-wrap: wrap; justify-content: space-around; gap: 20px; }
+        .feature-box { text-align: center; width: 250px; }
+        .feature-icon { font-size: 40px; color: #d32f2f; margin-bottom: 15px; }
+        .feature-box h4 { margin-bottom: 10px; color: #333; }
+
+        /* Footer */
+        footer { background: #002147; color: white; padding: 50px 5% 20px; }
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; margin-bottom: 30px; }
+        .footer-col h3 { border-bottom: 2px solid #d32f2f; padding-bottom: 10px; margin-bottom: 20px; display: inline-block; }
+        .footer-col ul { list-style: none; padding: 0; }
+        .footer-col ul li { margin-bottom: 10px; }
+        .footer-col ul li a:hover { color: #ddd; }
+        .copyright { text-align: center; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; font-size: 0.9em; }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .nav-links { display: none; } /* Hide nav on mobile for simple demo */
+            .top-bar { flex-direction: column; gap: 10px; }
+            .hero h1 { font-size: 2em; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Top Bar with LMS Button -->
+    <div class="top-bar">
+        <div class="top-bar-left">
+            <span>Email: tipsedudelhi@gmail.com</span> | 
+            <span>Phone: +91 9066015000</span>
+        </div>
+        <div>
+            <a href="#" class="lms-btn">LMS Portal Login</a>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="nav-container">
+            <div class="logo">
+                TIPS <span> NEET & NURSING EDUCATION</span>
+            </div>
+            <nav class="nav-links">
+                <a href="#">Home</a>
+                <a href="#">About Us</a>
+                <a href="#">Courses</a>
+                <a href="#" class="nav-lms">LMS Portal</a>
+                <a href="#">Admissions</a>
+                <a href="#">Contact</a>
+                <a href="#" class="cta-btn">Apply Now</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Announcement Marquee -->
+    <div class="ticker">
+        📢 Admissions Open for 2025-26! | Entrance Exam for B.Sc Nursing on 25th Sept | 100% Placement Record for Paramedical Sciences
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Empowering Future Healthcare Leaders</h1>
+        <p>Join the premier institute for Nursing, Allied Health, and Psychology. Experience world-class education and hands-on training.</p>
+        <div class="hero-btns">
+            <a href="#" class="fill">Download Prospectus</a>
+            <a href="#">Apply Online</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section-padding" style="background: white;">
+        <div class="section-title">
+            <h2>About TIPS</h2>
+            <div class="line"></div>
+        </div>
+        <p style="text-align: center; max-width: 800px; margin: 0 auto; line-height: 1.6;">
+            Target Institute Of Professional Study (TIPS) is an innovative and creative premier institute located in the heart 
+            of North India which is undoubtedly one of the best establishments. The institute offers a variety of paramedical 
+            courses at UG, PG, Diploma and Certificate level. It would be my proud privilege to welcome new batch of 
+            students in Medical, Nursing, Paramedical, Academic, Professional Courses who are aspiring to be with us to fulfill 
+            their cherished dream of becoming successful Career in their chosen field of study. I congratulate the parents who 
+            have reposed their faith in us and got their wards admitted to our group of institutions
+        </p>
+    </section>
+
+    <!-- Courses Section -->
+    <section class="section-padding">
+        <div class="section-title">
+            <h2>Our Courses</h2>
+            <div class="line"></div>
+        </div>
+        
+        <div class="courses-grid">
+            <!-- Course 1: Psychology (Based on your notes) -->
+            <div class="course-card">
+                <div class="course-img" style="background-image: url('https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');"></div>
+                <div class="course-content">
+                    <h3>B.Sc in Psychology</h3>
+                    <p>Study the human mind and behavior. Our curriculum covers Cognitive Processes, Attention, Perception, and Clinical Psychology.</p>
+                    <span class="read-more">View Details →</span>
+                </div>
+            </div>
+
+            <!-- Course 2: Nursing -->
+            <div class="course-card">
+                <div class="course-img" style="background-image: url('https://images.unsplash.com/photo-1551190822-a9333d879b1f?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');"></div>
+                <div class="course-content">
+                    <h3>B.Sc Nursing</h3>
+                    <p>A comprehensive program preparing students to become skilled nurses. Includes 6 months of mandatory internship.</p>
+                    <span class="read-more">View Details →</span>
+                </div>
+            </div>
+
+            <!-- Course 3: Paramedical -->
+            <div class="course-card">
+                <div class="course-img" style="background-image: url('https://images.unsplash.com/photo-1581595220892-b0739db3ba8c?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');"></div>
+                <div class="course-content">
+                    <h3>Medical Lab Technology</h3>
+                    <p>Train to diagnose diseases through laboratory tests. Master the operation of advanced diagnostic equipment.</p>
+                    <span class="read-more">View Details →</span>
+                </div>
+            </div>
+            
+            <!-- Course 4: Radiology -->
+            <div class="course-card">
+                <div class="course-img" style="background-image: url('https://images.unsplash.com/photo-1530482054429-cc252eb7415a?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60');"></div>
+                <div class="course-content">
+                    <h3>Radiology & Imaging</h3>
+                    <p>Learn X-Ray, CT Scan, and MRI technologies. Essential for diagnosing internal injuries and diseases.</p>
+                    <span class="read-more">View Details →</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section class="section-padding" style="background: #e9ecef;">
+        <div class="section-title">
+            <h2>Why Choose Tips Institute?</h2>
+            <div class="line"></div>
+        </div>
+        <div class="features-grid">
+            <div class="feature-box">
+                <div class="feature-icon">🏥</div>
+                <h4>Hospital Tie-ups</h4>
+                <p>Clinical rotation in top multi-specialty hospitals.</p>
+            </div>
+            <div class="feature-box">
+                <div class="feature-icon">👨‍🏫</div>
+                <h4>Expert Faculty</h4>
+                <p>Doctors and Psychologists with 10+ years exp.</p>
+            </div>
+            <div class="feature-box">
+                <div class="feature-icon">💻</div>
+                <h4>Modern Labs</h4>
+                <p>Psychology labs and Nursing simulation mannequins.</p>
+            </div>
+            <div class="feature-box">
+                <div class="feature-icon">🎓</div>
+                <h4>100% Placement</h4>
+                <p>Dedicated cell for career guidance and jobs.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h3>Contact Us</h3>
+                <p>Target Institute of Professional Study</p>
+                <p>Plot No. 20, Nangloi-Najafgarh Road</p>
+                <p>Nangloi, India - 110041</p>
+                <p>Email: tipsedudelhi@gmail.com</p>
+            </div>
+            <div class="footer-col">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Courses</a></li>
+                    <li><a href="#">Admission Process</a></li>
+                    <li><a href="#">Fee Structure</a></li>
+                    <li><a href="#">Exam Schedule</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Popular Courses</h3>
+                <ul>
+                    <li><a href="#">B.Sc Nursing</a></li>
+                    <li><a href="#">GNM Nursing</a></li>
+                    <li><a href="#">B.Sc Psychology</a></li>
+                    <li><a href="#">MLT</a></li>
+                    <li><a href="#">Optometry</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Connect</h3>
+                <p>Follow us on social media for the latest updates.</p>
+            </div>
+        </div>
+        <div class="copyright">
+            &copy; 2020 Target Institute of Professional Study. All Rights Reserved.
+        </div>
+    </footer>
+
+</body>
+</html>
